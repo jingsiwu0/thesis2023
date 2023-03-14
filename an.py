@@ -1,13 +1,12 @@
 from manimlib import *
 class lim(Scene):
     def construct(self) -> None:
-        self.add_sound("soul and mind.mp3")
-        
-        text_ = Tex("数列极限的定义")
-        self.play(ShowCreation(text_))
-        self.wait(2)
-        self.play(Uncreate(text_))
-        
+        self.add_sound("D:\\manim\\manim-master\\venv\\music.mp3")
+        #get_full_sound_file_path("D:\\manim\\manim-master\\venv\\music.mp3")
+        text0 = Text("Definition of Series Limits",color=PURPLE_A)
+        self.play(Write(text0))
+        self.wait()
+        self.play(FadeOut(text0))
         tex_1 = Tex("\\lim_{n \\to \\infty} a_n{}", color=BLUE_C).scale(2)
         self.play(ShowCreation(tex_1))
         self.wait(2)
@@ -15,16 +14,21 @@ class lim(Scene):
         self.wait(1)
         self.play(Uncreate(tex_1))
 
-        axes = Axes((-1, 10, 0.5), (0, 7)).scale(1)
+        axes = Axes((-1, 10, 0.5), (0, 7, 0.5)).scale(1)
         self.play(ShowCreation(axes))
         self.wait()
-        F = axes.get_graph(
+        F1 = axes.get_graph(
             lambda x: 1 / x,
             color=BLUE_C,
-            x_range=[0.1, 9]
+            x_range=[0.1, 0.2]
         )
-        x_label = axes.get_graph_label(F, Tex("1/x").scale(3))
-        self.play(ShowCreation(F),
+        F2 = axes.get_graph(
+            lambda x: 1 / x,
+            color=BLUE_C,
+            x_range=[0.2, 10]
+        )
+        x_label = axes.get_graph_label(F1, Tex("1/x").scale(3))
+        self.play(ShowCreation(F1), ShowCreation(F2),
                   FadeIn(x_label, DOWN),
                   )
         self.wait()
@@ -100,29 +104,41 @@ class lim(Scene):
                   )
         self.wait(4)
         grp1 = VGroup(x_label, axes, dot1, dot1_1, dot2, dot2_1, dot3, dot3_1, dot4, dot4_1, dot5, dot5_1, dot6, dot6_1,
-                      dot7, dot7_1, v_line, v_line2, v_line3, v_line4, F)
+                      dot7, dot7_1, v_line, v_line2, v_line3, v_line4, F1,F2)
         self.play(FadeOut(grp1))
         self.wait(2)
 
-        text1 = Text("从上面例子看出", font="Kai", color=BLUE_C)
-        text2 = Text("随着x的增大，y的数值无限接近于0", font="Kai", color=BLUE_C).scale(0.8)
-        text3 = Text("那么就说这个函数的极限是0", font="Kai", color=BLUE_C).scale(0.8)
-        text4 = Text("那么在数学上又如何严格定义极限呢？", font="Kai", color=BLUE_C).scale(0.8)
-        text5 = Text("继续看下一个例子", font="Kai", color=BLUE_C).scale(0.8)
+        #测试OK，时间0313 22:54
+        '''场景1结束，开始场景2'''
+
+        text1 = Tex("From\ \ the\ \  example\ \  we\ \  can\ \  see", color=BLUE_C)
+        text2 = Tex(
+            "As\ \  x\ \  increases,\ \  the\ \  value\ \  of\ \  y\ \  approaches\ \  to\ \  0\ \  infinitely ",
+            color=BLUE_C).scale(1)
+        text3 = Tex("Then\ \  we\ \  say\ \  that\ \  the\ \  limit\ \  of\ \  this\ \  function\ \  is\ \  0",
+                    color=BLUE_C, ).scale(1)
+        text4 = Tex("To\ \  better\ \  understand\ \  the\ \ strict\ \  definition\ \  of\ \  limits",
+                    color=BLUE_C, ).scale(1)
+        text5 = Tex("Let's\ \  see\ \  another\ \  instance", color=BLUE_C).scale(1)
         self.play(ShowCreation(text1))
         self.wait(2)
-        self.play(Transform(text1, text2))
+        self.play(Transform(text1, text2, run_time=2))
         self.wait(2)
-        self.play(Transform(text1, text3))
+        self.play(Transform(text1, text3, run_time=2))
         self.wait(2)
-        self.play(Transform(text1, text4))
+        self.play(Transform(text1, text4, run_time=2))
         self.wait(2)
-        self.play(Transform(text1, text5))
+        self.play(Transform(text1, text5, run_time=2))
         self.wait(2)
 
         tex1 = Tex("\\left \\{ a_n{} \\right \\} =\\left \\{ \\frac{(-1)^{n} }{n}  \\right \\} ", color=BLUE_C)
         tex1.to_edge(UP)
-        self.play(ShowCreation(tex1),FadeOut(text1))
+        self.play(ShowCreation(tex1), FadeOut(text1))
+
+
+
+        '''场景2结束，开始场景3'''
+
         self.wait(2)
         self.play(tex1.animate.shift(LEFT * 5))
         self.wait(2)
@@ -174,50 +190,63 @@ class lim(Scene):
                   FadeIn(dot5), FadeIn(dot6),
                   )
         self.wait(2)
-        text_1 = Text("从图像上看到，随着x增大，y的值逐渐接近x轴", font="Kai", color=BLUE_C).scale(0.6)
-        text_2 = Text("可以猜测，数列的极限为0", font="Kai", color=BLUE_C).scale(0.6)
-        text_3 = Text("在图像上看，an的值无限接近于0，也就是其极限为0", font="Kai", color=BLUE_C).scale(0.6)
-        text_4 = Text("这就是说", font="Kai", color=BLUE_C).scale(0.6)
-        tex3_1 = Tex("\\lim_{n \\to \\infty} \\frac{(-1)^{n} }{n} =0", color=PURPLE_B).scale(0.8)
-        text_5 = Text("下面看看数学上的严格定义", font="Kai", color=BLUE_C).scale(0.6)
+        text_1 = Tex(
+            "From\ \ the\ \  graph,\ \  as\ \  x\ \  increases\ \  the\ \  value\ \  of\ \  y \ \ approaches\ \  x-axis",
+            color=BLUE_C).scale(0.8)
+        text_2 = Tex("It\ \  can\ \  be\ \  gussed\ \  that\ \  the\ \  limit\ \  of\ \  the\ \  series\ \  is\ \  0",
+                     color=BLUE_C).scale(1)
+        text_3 = Tex(
+            "From\ \  the\ \  graph,\ \  the\ \  value\ \  of\ \ a_n{}\ \  is\ \ close\ \ to\ \ 0\ \ infinitely",
+            color=BLUE_C).scale(1)
+        text_4 = Tex("which\ \ means",  color=BLUE_C).scale(1)
+        tex3_1 = Tex("\\lim_{n \\to \\infty} \\frac{(-1)^{n} }{n} =0", color=PURPLE_B).scale(1)
+        text_5 = Tex("Now\ \ let's\ \ see\ \ the\ \ mathematical\ \ definition:", color=BLUE_C).scale(1)
         text_1.to_edge(DOWN)
         self.play(ShowCreation(text_1))
         self.wait(1)
         text_2.to_edge(DOWN)
-        self.play(Transform(text_1, text_2))
+        self.play(Transform(text_1, text_2, run_time=2))
         self.wait()
         text_3.to_edge(DOWN)
-        self.play(Transform(text_1, text_3))
+        self.play(Transform(text_1, text_3, run_time=2))
         tex3_1.to_edge(DOWN)
         self.wait()
         text_4.to_edge(DOWN)
-        self.play(Transform(text_1, text_4))
+        self.play(Transform(text_1, text_4, run_time=2))
         self.wait()
-        self.play(Transform(text_1, tex3_1))
+        self.play(Transform(text_1, tex3_1, run_time=2))
         self.wait()
         text_5.to_edge(DOWN)
-        self.play(Transform(text_1, text_5))
+        self.play(Transform(text_1, text_5, run_time=2))
         self.wait(2)
 
         self.play(FadeOut(VGroup(text_1, axes, dot, dot2, dot3, dot4, dot5, dot6, tex1, tex2)))
         self.wait()
 
-        text4_1 = Text("设an为一个数列，如果存在一个给定的实数L，对于任意给定的正实数 ε（无论大小）", font="Kai",
-                       color=BLUE_B).scale(0.3)
-        text4_2 = Text("总是存在一个正整数N，当n>N时，有", font="Kai", color=BLUE_B).scale(0.4)
+        '''场景2结束，开始场景3'''
+
+        text4_1 = Tex(
+            "For \ \    series \ \   a_n{} , \ \  if \ \  there  \ \  is \ \  a \ \  L  \ \  given,  \ \  for  \ \  any  \ \  given  \ \  positive \ \ \epsilon",
+            color=BLUE_B).scale(0.9)
+        text4_2 = Tex(" A\ \ positive\ \ N \ \ can \ \ always\ \ be \ \ found\ \ when\ \ n>N :", color=BLUE_B).scale(
+            0.9)
         tex4_3 = Tex("\\left | a_n{} -L \\right | <\\varepsilon ", color=BLUE_B).scale(1.7)
-        text4_4 = Text("那么就称实数L为数列an的极限，或是说an收敛于L，写作：", font="Kai", color=BLUE_B).scale(0.4)
+        text4_4 = Tex(
+            "Then \ \ we \ \ say\ \ the\ \ limit\ \ of\ \ a_n{}\ \  is\ \ L,\ \ which\ \ means\ \ a_n{}\ \ converges\ \  to \ \ L",
+            color=BLUE_B).scale(0.8)
         text4_5 = Tex("\\lim_{n \\to \\infty} a_n{} =L", color=BLUE_B).scale(1.7)
         grp4_1 = VGroup(text4_1, text4_2, tex4_3, text4_4, text4_5)
         grp4_1.arrange(DOWN, buff=1)
         self.play(ShowCreation(grp4_1, run_time=6))
         self.wait(6)
-        text4_6 = Text("这看上去或许有些抽象", font="Kai", color=BLUE_B).scale(0.4)
-        text4_7 = Text("我们再看一个例子", font="Kai", color=BLUE_B).scale(0.4)
+        text4_6 = Tex("If\ \ you\ \  think\ \  it's\ \  abstract", color=BLUE_B).scale(0.8)
+        text4_7 = Tex("another\ \  example\ \  will\ \  be\ \  shown", color=BLUE_B).scale(0.8)
         self.play(FadeOut(grp4_1), FadeIn(text4_6))
         self.wait()
         self.play(Transform(text4_6, text4_7))
         self.wait()
+
+        '''场景3结束，开始场景4'''
 
         axes5_1 = Axes((-1, 10, 0.5), (-1, 8, 1)).scale(0.6)
 
@@ -253,9 +282,9 @@ class lim(Scene):
         dot5_9 = Dot(color=PURPLE_A).scale(2)
         dot5_9.move_to(axes5_1.c2p(10, 3.7))
 
-        text5_1 = Text("在这个图像中，数列的极限可能是它", font="Kai", color=BLUE_C).scale(0.8)
-        text5_2 = Text("也可能是它", font="Kai", color=BLUE_C).scale(0.8)
-        text5_3 = Text("但最有可能的还是它", font="Kai", color=BLUE_C).scale(0.8)
+        text5_1 = Tex("In\ \ this\ \ graph, \ \ a_n{}  's\ \ limit\ \ can\ \ be", color=BLUE_C).scale(1.2)
+        text5_2 = Tex("or", color=BLUE_C).scale(1.2)
+        text5_3 = Tex("but\ \ this\ \ will\ \ be\ \ the\ \ answer", color=BLUE_C).scale(1.2)
         text5_1.to_edge(DOWN)
         text5_2.to_edge(DOWN)
         text5_3.to_edge(DOWN)
@@ -292,8 +321,9 @@ class lim(Scene):
             color=BLUE_C,
         )
 
-        text5_4 = Text("假设一个区间", font="Kai", color=BLUE_C).scale(0.8)
-        text5_5 = Text("区间中划入了这些点", font="Kai", color=BLUE_C).scale(0.8)
+        text5_4 = Tex("Let's\ \ make\ \ an\ \ interval ", color=BLUE_C).scale(0.8)
+        text5_5 = Tex("There\ \ are\ \ an\ \ infinite\ \ number\ \ of\ \ points\ \ in\ \ the\ \ region",
+                      color=BLUE_C).scale(0.9)
         text5_4.to_edge(DOWN)
         text5_5.to_edge(DOWN)
 
@@ -320,16 +350,16 @@ class lim(Scene):
             discontinuities=[3],
             color=BLUE_C,
         )
-        text5_6 = Text("区域中有无穷多个点，也可理解为", font="Kai", color=BLUE_C).scale(0.8)
+        text5_6 = Tex("which\ \ can\ \ also\ \ be\ \ understood\ \ as", color=BLUE_C).scale(0.8)
         text5_6.to_edge(DOWN)
 
-        self.play(ReplacementTransform(step_graph5_2, step_graph5_4),
-                  ReplacementTransform(step_graph5_3, step_graph5_5),
-                  ReplacementTransform(text5_5, text5_6,run_time=2))
+        self.play(
+                  ReplacementTransform(text5_5, text5_6, run_time=2))
 
         self.wait()
 
-        text5_7 = Text("从某一个an开始后面的点都在区域内", font="Kai", color=BLUE_C).scale(0.8)
+        text5_7 = Tex("The\ \ points\ \ after\ \ a_n{}\ \  are\ \ all\ \ in\ \ this\ \ interval", color=BLUE_C).scale(
+            0.8)
         text5_7.to_edge(DOWN)
         self.play(ReplacementTransform(text5_6, text5_7), dot5_5.animate.set_color(WHITE),
                   dot5_6.animate.set_color(WHITE),
@@ -337,28 +367,36 @@ class lim(Scene):
                   dot5_8.animate.set_color(WHITE),
                   dot5_9.animate.set_color(YELLOW))
         self.wait()
-        text5_8 = Text("以L为中心缩小区域", font="Kai", color=BLUE_C).scale(0.8)
+        text5_8 = Tex("Narrow\ \ the\ \ area\ \ centered\ \ on\ \ L", color=BLUE_C).scale(0.8)
         text5_8.to_edge(DOWN)
-        text5_9 = Text("依旧有无穷多个点落在区域内", font="Kai", color=BLUE_C).scale(0.8)
+        text5_9 = Tex(
+            "There\ \ are\ \  still\ \  a_n{} \ \  infinite\ \  number\ \  of\ \  points\ \  falling\ \  in\ \  the\ \  interval",
+            color=BLUE_C).scale(0.8)
         text5_9.to_edge(DOWN)
-        text5_10 = Text("也依旧能找到一个an使得这个点之后的点都落在区域内", font="Kai", color=BLUE_C).scale(0.5)
+        text5_10 = Tex(
+            "It\ \  is\ \   also\ \   still\ \   possible\ \   to\ \   find\ \   an\ \  a_n{} \ \ such\ \  that\ \   all\ \   points\ \   after\ \   this\ \   point\ \   fall\ \   within\ \   the\ \   interval",
+            color=BLUE_C).scale(0.5)
         text5_10.to_edge(DOWN)
-        text5_11 = Text("我们说L是这个数列的极限", font="Kai", color=BLUE_C).scale(0.8)
+        text5_11 = Tex("Now\ \ we\ \ can\ \ say\ \ L\ \ is\ \ the\ \ limit\ \ of\ \ a_n{} ", color=BLUE_C).scale(0.8)
         text5_11.to_edge(DOWN)
-        text5_12 = Text("这就是数学家给出的数列极限的定义", font="Kai", color=BLUE_C).scale(0.8)
+        text5_12 = Tex(
+            "This\ \ is\ \ the\ \ definition\ \ of \ \ the\ \ limit\ \ of\ \ a\ \ series\ \ given\ \ by\ \ mathematicians",
+            color=BLUE_C).scale(0.8)
         text5_12.to_edge(DOWN)
 
-        self.play(ReplacementTransform(text5_7, text5_8,run_time=2))
-        self.wait(1)
+        self.play(ReplacementTransform(text5_7, text5_8, run_time=2),ReplacementTransform(step_graph5_2, step_graph5_4),
+                  ReplacementTransform(step_graph5_3, step_graph5_5),)
+        self.wait(3)
 
-        self.play(ReplacementTransform(text5_8, text5_9,run_time=2))
-        self.wait(1)
+        self.play(ReplacementTransform(text5_8, text5_9, run_time=2))
+        self.wait(3)
 
-        self.play(ReplacementTransform(text5_9, text5_10,run_time=2))
-        self.wait(1)
+        self.play(ReplacementTransform(text5_9, text5_10, run_time=2))
+        self.wait(3)
 
-        self.play(ReplacementTransform(text5_10, text5_11,run_time=2))
-        self.wait(1)
+        self.play(ReplacementTransform(text5_10, text5_11, run_time=2))
+        self.wait(3)
 
-        self.play(ReplacementTransform(text5_11, text5_12,run_time=2))
-        self.wait(1)
+        self.play(ReplacementTransform(text5_11, text5_12, run_time=2))
+        self.wait(5)
+        
