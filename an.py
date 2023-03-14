@@ -7,7 +7,7 @@ class lim(Scene):
         self.play(Write(text0))
         self.wait()
         self.play(FadeOut(text0))
-        tex_1 = Tex("\\lim_{n \\to \\infty} a_n{}", color=BLUE_C).scale(2)
+        tex_1 = Tex("\\lim_{n \\to \\infty} a_{n}", color=BLUE_C).scale(2)
         self.play(ShowCreation(tex_1))
         self.wait(2)
         self.play(tex_1.animate.shift((UP)))
@@ -143,7 +143,7 @@ class lim(Scene):
         self.play(tex1.animate.shift(LEFT * 5))
         self.wait(2)
         tex2 = Tex(
-            "\\begin{matrix} n & 1 & 2 & 3 & 4 &…… \\\\ a_n{}  & -1 & \\frac{1}{2}  & -\\frac{1}{3} & \\frac{1}{4} &……\\end{matrix}",
+            "\\begin{matrix} n & 1 & 2 & 3 & 4 &…… \\\\ a_{n}  & -1 & \\frac{1}{2}  & -\\frac{1}{3} & \\frac{1}{4} &……\\end{matrix}",
             color=BLUE_C).scale(0.8)
         tex2.to_edge(UP)
 
@@ -206,35 +206,36 @@ class lim(Scene):
         self.wait(1)
         text_2.to_edge(DOWN)
         self.play(Transform(text_1, text_2, run_time=2))
-        self.wait()
+        self.wait(2)
         text_3.to_edge(DOWN)
         self.play(Transform(text_1, text_3, run_time=2))
         tex3_1.to_edge(DOWN)
-        self.wait()
+        self.wait(2)
         text_4.to_edge(DOWN)
         self.play(Transform(text_1, text_4, run_time=2))
-        self.wait()
+        self.wait(2)
         self.play(Transform(text_1, tex3_1, run_time=2))
-        self.wait()
+        self.wait(2)
         text_5.to_edge(DOWN)
         self.play(Transform(text_1, text_5, run_time=2))
         self.wait(2)
 
         self.play(FadeOut(VGroup(text_1, axes, dot, dot2, dot3, dot4, dot5, dot6, tex1, tex2)))
-        self.wait()
+        self.wait(2)
 
         '''场景2结束，开始场景3'''
 
         text4_1 = Tex(
-            "For \ \    series \ \   a_n{} , \ \  if \ \  there  \ \  is \ \  a \ \  L  \ \  given,  \ \  for  \ \  any  \ \  given  \ \  positive \ \ \epsilon",
+            "For \ \    series \ \   a_{n} , \ \  if \ \  there  \ \  is \ \  a \ \  L  \ \  given,  \ \  for  \ \  any  \ \  given  \ \  positive \ \ \epsilon",
             color=BLUE_B).scale(0.9)
-        text4_2 = Tex(" A\ \ positive\ \ N \ \ can \ \ always\ \ be \ \ found\ \ when\ \ n>N :", color=BLUE_B).scale(
+        text4_2 = Tex(" A\ \ positive\ \ N \ \ can \ \ always\ \ be \ \ found\ \ when\ \ n \ \ \\textgreater \ \ N :",
+                      color=BLUE_B).scale(
             0.9)
-        tex4_3 = Tex("\\left | a_n{} -L \\right | <\\varepsilon ", color=BLUE_B).scale(1.7)
+        tex4_3 = Tex("\\left | a_{n} -L \\right | \\textless \\varepsilon ", color=BLUE_B).scale(1.7)
         text4_4 = Tex(
-            "Then \ \ we \ \ say\ \ the\ \ limit\ \ of\ \ a_n{}\ \  is\ \ L,\ \ which\ \ means\ \ a_n{}\ \ converges\ \  to \ \ L",
+            "Then \ \ we \ \ say\ \ the\ \ limit\ \ of\ \ a_{n}\ \  is\ \ L,\ \ which\ \ means\ \ a_{n}\ \ converges\ \  to \ \ L",
             color=BLUE_B).scale(0.8)
-        text4_5 = Tex("\\lim_{n \\to \\infty} a_n{} =L", color=BLUE_B).scale(1.7)
+        text4_5 = Tex("\\lim_{n \\to \\infty} a_{n} =L", color=BLUE_B).scale(1.7)
         grp4_1 = VGroup(text4_1, text4_2, tex4_3, text4_4, text4_5)
         grp4_1.arrange(DOWN, buff=1)
         self.play(ShowCreation(grp4_1, run_time=6))
@@ -242,15 +243,15 @@ class lim(Scene):
         text4_6 = Tex("If\ \ you\ \  think\ \  it's\ \  abstract", color=BLUE_B).scale(0.8)
         text4_7 = Tex("another\ \  example\ \  will\ \  be\ \  shown", color=BLUE_B).scale(0.8)
         self.play(FadeOut(grp4_1), FadeIn(text4_6))
-        self.wait()
+        self.wait(2)
         self.play(Transform(text4_6, text4_7))
-        self.wait()
+        self.wait(2)
 
         '''场景3结束，开始场景4'''
 
         axes5_1 = Axes((-1, 10, 0.5), (-1, 8, 1)).scale(0.6)
 
-        self.play(ShowCreation(axes5_1),FadeOut(text4_6))
+        self.play(ShowCreation(axes5_1,run_time=2),FadeOut(text4_6,run_time=2))
         self.wait()
         dot5_1 = Dot(color=PURPLE_A).scale(2)
         dot5_1.move_to(axes5_1.c2p(1, 7))
@@ -282,7 +283,7 @@ class lim(Scene):
         dot5_9 = Dot(color=PURPLE_A).scale(2)
         dot5_9.move_to(axes5_1.c2p(10, 3.7))
 
-        text5_1 = Tex("In\ \ this\ \ graph, \ \ a_n{}  's\ \ limit\ \ can\ \ be", color=BLUE_C).scale(1.2)
+        text5_1 = Tex("In\ \ this\ \ graph, \ \ a_{n}  's\ \ limit\ \ can\ \ be", color=BLUE_C).scale(1.2)
         text5_2 = Tex("or", color=BLUE_C).scale(1.2)
         text5_3 = Tex("but\ \ this\ \ will\ \ be\ \ the\ \ answer", color=BLUE_C).scale(1.2)
         text5_1.to_edge(DOWN)
@@ -294,7 +295,7 @@ class lim(Scene):
         v_line5_1 = always_redraw(lambda: axes5_1.get_h_line(dot5_3.get_left()))
         v_line5_2 = always_redraw(lambda: axes5_1.get_h_line(dot5_7.get_left()))
         self.play(ShowCreation(v_line5_1), ShowCreation(text5_1))
-        self.wait()
+        self.wait(2)
         self.play(ReplacementTransform(v_line5_1, v_line5_2), ReplacementTransform(text5_1, text5_2))
         self.wait(2)
         step_graph = axes5_1.get_graph(
@@ -304,10 +305,10 @@ class lim(Scene):
         )
 
         self.play(FadeOut(v_line5_2), FadeIn(step_graph), ReplacementTransform(text5_2, text5_3))
-        self.wait()
+        self.wait(2)
         step_label = axes5_1.get_graph_label(step_graph, Text("L"), x=4).next_to(step_graph)
         self.play(FadeIn(step_label))
-        self.wait()
+        self.wait(2)
 
         step_graph5_2 = axes5_1.get_graph(
             lambda x: 5,
@@ -327,7 +328,7 @@ class lim(Scene):
         text5_4.to_edge(DOWN)
         text5_5.to_edge(DOWN)
 
-        self.play(FadeIn(step_graph5_2), FadeIn(step_graph5_3), ReplacementTransform(text5_3, text5_4))
+        self.play(FadeIn(step_graph5_2,run_time=2), FadeIn(step_graph5_3,run_time=2), ReplacementTransform(text5_3, text5_4,run_time=2))
         self.wait(2)
         self.play(dot5_5.animate.set_color(YELLOW),
                   dot5_6.animate.set_color(YELLOW),
@@ -358,10 +359,10 @@ class lim(Scene):
 
         self.wait()
 
-        text5_7 = Tex("The\ \ points\ \ after\ \ a_n{}\ \  are\ \ all\ \ in\ \ this\ \ interval", color=BLUE_C).scale(
+        text5_7 = Tex("The\ \ points\ \ after\ \ a_{n}\ \  are\ \ all\ \ in\ \ this\ \ interval", color=BLUE_C).scale(
             0.8)
         text5_7.to_edge(DOWN)
-        self.play(ReplacementTransform(text5_6, text5_7), dot5_5.animate.set_color(WHITE),
+        self.play(ReplacementTransform(text5_6, text5_7,run_time=2), dot5_5.animate.set_color(WHITE),
                   dot5_6.animate.set_color(WHITE),
                   dot5_7.animate.set_color(YELLOW),
                   dot5_8.animate.set_color(WHITE),
@@ -370,22 +371,22 @@ class lim(Scene):
         text5_8 = Tex("Narrow\ \ the\ \ area\ \ centered\ \ on\ \ L", color=BLUE_C).scale(0.8)
         text5_8.to_edge(DOWN)
         text5_9 = Tex(
-            "There\ \ are\ \  still\ \  a_n{} \ \  infinite\ \  number\ \  of\ \  points\ \  falling\ \  in\ \  the\ \  interval",
+            "There\ \ are\ \  still\ \  a_{n} \ \  infinite\ \  number\ \  of\ \  points\ \  falling\ \  in\ \  the\ \  interval",
             color=BLUE_C).scale(0.8)
         text5_9.to_edge(DOWN)
         text5_10 = Tex(
-            "It\ \  is\ \   also\ \   still\ \   possible\ \   to\ \   find\ \   an\ \  a_n{} \ \ such\ \  that\ \   all\ \   points\ \   after\ \   this\ \   point\ \   fall\ \   within\ \   the\ \   interval",
+            "It\ \  is\ \   also\ \   still\ \   possible\ \   to\ \   find\ \   an\ \  a_{n} \ \ such\ \  that\ \   all\ \   points\ \   after\ \   this\ \   point\ \   fall\ \   within\ \   the\ \   interval",
             color=BLUE_C).scale(0.5)
         text5_10.to_edge(DOWN)
-        text5_11 = Tex("Now\ \ we\ \ can\ \ say\ \ L\ \ is\ \ the\ \ limit\ \ of\ \ a_n{} ", color=BLUE_C).scale(0.8)
+        text5_11 = Tex("Now\ \ we\ \ can\ \ say\ \ L\ \ is\ \ the\ \ limit\ \ of\ \ a_{n} ", color=BLUE_C).scale(0.8)
         text5_11.to_edge(DOWN)
         text5_12 = Tex(
             "This\ \ is\ \ the\ \ definition\ \ of \ \ the\ \ limit\ \ of\ \ a\ \ series\ \ given\ \ by\ \ mathematicians",
             color=BLUE_C).scale(0.8)
         text5_12.to_edge(DOWN)
 
-        self.play(ReplacementTransform(text5_7, text5_8, run_time=2),ReplacementTransform(step_graph5_2, step_graph5_4),
-                  ReplacementTransform(step_graph5_3, step_graph5_5),)
+        self.play(ReplacementTransform(text5_7, text5_8, run_time=2),ReplacementTransform(step_graph5_2, step_graph5_4,run_time=2),
+                  ReplacementTransform(step_graph5_3, step_graph5_5,run_time=2),)
         self.wait(3)
 
         self.play(ReplacementTransform(text5_8, text5_9, run_time=2))
@@ -399,4 +400,3 @@ class lim(Scene):
 
         self.play(ReplacementTransform(text5_11, text5_12, run_time=2))
         self.wait(5)
-        
